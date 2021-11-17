@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.loan.mapper.DemoMapper">
+    <resultMap id="BaseResultMap" type="com.example.loan.mapper.Demo">
+        <result column="id" jdbcType="int" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="created_at" jdbcType="DATETIME" property="createdAt"/>
+        <result column="updated_at" jdbcType="DATETIME" property="updatedAt"/>
+        <result column="cert_no" jdbcType="VARCHAR" property="certNo"/>
+        <result column="age" jdbcType="int" property="age"/>
+        <result column="sex" jdbcType="VARCHAR" property="sex"/>
+
+    </resultMap>
+    <sql id="BASE_COLUMNS">
+        id,name,created_at,updated_at,cert_no,age,sex
+    </sql>
+
+
+    <select id="selectByCertNo" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select <include refid="BASE_COLUMNS"/> from demo
+        where cert_no = #{cert_no}
+    </select>
+</mapper>
